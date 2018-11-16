@@ -72,7 +72,7 @@ namespace Checker_Game
                 Name = "pictureBox",
                 Size = new Size(92, 92),
                 Location = new Point(p1_3X-92, p1_3Y-92),
-                Image = Image.FromFile("./../../../../selected.png"),
+                Image = Image.FromFile("./../../../selected.png"),
                 
             };
             CheckerBoard.Controls.Add(picture);
