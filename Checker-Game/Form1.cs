@@ -65,17 +65,46 @@ namespace Checker_Game
 
         private void p1_3_Click(object sender, EventArgs e)
         {
-            int p1_3X = p1_3.Left + p1_3.Width / 2 - p1_3.Image.Width / 2;
-            int p1_3Y = p1_3.Top + p1_3.Height / 2 - p1_3.Image.Height / 2;
-            var picture = new PictureBox
+            int p1_3X = p1_3.Left;
+            int p1_3Y = p1_3.Top;
+            var moveLeft = new PictureBox
             {
-                Name = "pictureBox",
+                Name = "moveLeft",
                 Size = new Size(92, 92),
-                Location = new Point(p1_3X-92, p1_3Y-92),
+                Location = new Point(p1_3X - 88, p1_3Y - 88),
                 Image = Image.FromFile("./../../../selected.png"),
-                
+                Cursor = Cursors.Hand
             };
-            CheckerBoard.Controls.Add(picture);
+            
+            var moveRight = new PictureBox
+            {
+                Name = "moveRight",
+                Size = new Size(92, 92),
+                Location = new Point(p1_3X + 92, p1_3Y - 88),
+                Image = Image.FromFile("./../../../selected.png"),
+                Cursor = Cursors.Hand
+            };
+            moveLeft.Click += (sender2, e2) => moveLeft_Click(sender, e, moveLeft, moveRight);
+            moveRight.Click += (sender2, e2) => moveRight_Click(sender, e, moveLeft, moveRight);
+
+            CheckerBoard.Controls.Add(moveLeft);
+            CheckerBoard.Controls.Add(moveRight);
+        }
+
+        private void moveLeft_Click(object sender, EventArgs e, PictureBox moveLeft, PictureBox moveRight)
+        {
+            p1_3.Left -= 90;
+            p1_3.Top -= 90;
+            CheckerBoard.Controls.Remove(moveLeft);
+            CheckerBoard.Controls.Remove(moveRight);
+        }
+        private void moveRight_Click(object sender, EventArgs e, PictureBox moveLeft, PictureBox moveRight)
+        {
+            p1_3.Left += 90;
+            p1_3.Top -= 90;
+            CheckerBoard.Controls.Remove(moveLeft);
+            CheckerBoard.Controls.Remove(moveRight);
+            
         }
     }
 }
